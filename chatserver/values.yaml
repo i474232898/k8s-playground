@@ -1,1 +1,10 @@
- 
+chatserver:
+  components: backend
+  name: chatserver
+  image: 339924580365.dkr.ecr.ap-southeast-2.amazonaws.com/chatserver
+  version: v0.0.0-3966a10
+  port: 80
+  replicas: 1
+  limits:
+    memory: "128Mi"
+    cpu: "500m"
