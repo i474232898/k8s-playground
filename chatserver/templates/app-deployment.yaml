@@ -46,43 +46,42 @@ spec:
           resources:
             limits: {{ .Values.chatserver.limits | toYaml | nindent 14 }}
           env:
-            - name: DATABASE_URL
-              valueFrom: 
-                secretKeyRef:
-                  name: app-secret
-                  key: DATABASE_URL
+            {{- range .Values.chatserver.envs }}
+            {{- $data := dict "name" $.Values.chatserver.name "env" . }}
+            {{- include "env.template" $data | indent 12 }}
+            {{- end }}
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: app-secret
+                  name: chatserver-secret
                   key: POSTGRES_USER
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: app-secret
+                  name: chatserver-secret
                   key: POSTGRES_PASSWORD
             - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
-                  name: app-secret
+                  name: chatserver-secret
                   key: POSTGRES_DB
             - name: DB_SCHEMA
               valueFrom:
                 secretKeyRef:
-                  name: app-secret
+                  name: chatserver-secret
                   key: DB_SCHEMA
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:
-                  name: app-secret
+                  name: chatserver-secret
                   key: DB_HOST
             - name: DB_PORT
               valueFrom:
                 secretKeyRef:
-                  name: app-secret
+                  name: chatserver-secret
                   key: DB_PORT
             - name: PORT
               valueFrom:
                 secretKeyRef:
-                  name: app-secret
+                  name: chatserver-secret
                   key: PORT

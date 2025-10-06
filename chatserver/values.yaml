@@ -8,6 +8,8 @@ chatserver:
   limits:
     memory: "128Mi"
     cpu: "500m"
+  envs: 
+    - DATABASE_URL
 
 postgres:
   components: postgres
