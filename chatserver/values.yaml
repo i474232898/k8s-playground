@@ -8,3 +8,17 @@ chatserver:
   limits:
     memory: "128Mi"
     cpu: "500m"
+
+postgres:
+  components: postgres
+  name: postgres
+  image: postgres:15
+  port: 5432
+  replicas: 1
+  limits:
+    memory: "1512Mi"
+    cpu: "500m"
+
+pvc:
+  requests:
+    storage: 1Gi

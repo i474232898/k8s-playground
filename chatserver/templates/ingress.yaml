@@ -14,6 +14,6 @@ spec:
         path: "/"
         backend:
           service:
-            name: backend-clusterip
+            name: {{ .Values.chatserver.components }}-clusterip
             port: 
-              number: 80 
+              number: {{ .Values.chatserver.port }} 
